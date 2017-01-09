@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
 
   def reset_session_token!
     self.session_token = User.new_session_token
+    self.save!
   end
 
   def is_password?(password)
