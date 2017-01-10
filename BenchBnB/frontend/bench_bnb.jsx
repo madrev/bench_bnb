@@ -5,11 +5,9 @@ import Root from './components/root';
 import { signup, login, logout } from "./actions/session_actions";
 
 document.addEventListener('DOMContentLoaded', () => {
-    const store = configureStore();
+    let  preloadedState = { session: { currentUser: window.currentUser} };
+    const store = (window.currentUser? configureStore(preloadedState) : configureStore());
     window.store = store;
-    window.signup = signup;
-    window.login = login;
-    window.logout = logout;
     const root = document.getElementById('root');
     ReactDOM.render(<Root store= { store }/>, root);
 });
